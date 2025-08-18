@@ -168,7 +168,7 @@ export const imagensProjetos = [
   "assets/images/PetLovers.png",
   "assets/images/Atlantis.png",
   "assets/images/assetboxlogogti.png",
-  "assets/tupan.png",
+  "assets/images/tupan.png",
 
   // @TODO: Adicionar mais imagens para projetos
   "https://via.placeholder.com/300x200?text=Projeto+8",
