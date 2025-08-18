@@ -1,6 +1,6 @@
 import { projetos, imagensProjetos, linksProjetos } from "./data.js";
 
-let currentProjectIndex = -1;
+let currentProjectIndex = 0;
 
 function createProjetoContentHTML(projeto, link) {
   const tecnologiasHtml = projeto.tecnologias
@@ -11,19 +11,19 @@ function createProjetoContentHTML(projeto, link) {
         <p class="project-description">${projeto.descricao}</p>
         <div class="project-techs">${tecnologiasHtml}</div>
         <hr />
-        <p>${projeto.contribuicao}</p>
+        <h3 class="titulo-detalhe">Minha Contribuição</h3>
+        <p class="project-contribution">${projeto.contribuicao}</p>
         <hr />
-        <a href="${link}" target="_blank" rel="noopener noreferrer" class="project-link">Ver Detalhes</a>
+        <a href="${link}" target="_blank" rel="noopener noreferrer" class="project-link">Ver Detalhes do Projeto</a>
     `;
 }
 
-function updateProjectContent(
-  index,
-  projectDetailsContainer,
-  projectActiveImage
-) {
-  if (index === currentProjectIndex) return;
-  currentProjectIndex = index;
+function updateProjectContent() {
+  const projectDetailsContainer = document.getElementById(
+    "project-details-container"
+  );
+  const projectActiveImage = document.querySelector(".project-active-image");
+  const projectCounter = document.getElementById("project-counter");
 
   const projeto = projetos[currentProjectIndex];
   const imagem = imagensProjetos[currentProjectIndex];
@@ -36,6 +36,9 @@ function updateProjectContent(
     projectDetailsContainer.innerHTML = createProjetoContentHTML(projeto, link);
     projectActiveImage.src = imagem;
     projectActiveImage.alt = projeto.titulo;
+    projectCounter.textContent = `${currentProjectIndex + 1} / ${
+      projetos.length
+    }`;
 
     projectDetailsContainer.classList.remove("changing");
     projectActiveImage.classList.remove("changing");
@@ -43,108 +46,60 @@ function updateProjectContent(
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
+  const allScrollPages = document.querySelectorAll(".scroll-page");
   const navLinks = document.querySelectorAll("#main-nav a");
-  const mainSections = {
-    intro: document.getElementById("intro-section"),
-    about: document.getElementById("about-me-section"),
-    projects: document.getElementById("projects-main-section"),
-    skills: document.getElementById("skills-main-section"),
-  };
-  const projectTriggersContainer = document.querySelector(
-    ".project-triggers-container"
-  );
-  const projectDetailsContainer = document.getElementById(
-    "project-details-container"
-  );
-  const projectActiveImage = document.querySelector(".project-active-image");
+  const prevProjectBtn = document.getElementById("prev-project-btn");
+  const nextProjectBtn = document.getElementById("next-project-btn");
 
-  if (projetos.length > 0) {
-    mainSections.projects.style.height = `${projetos.length * 100}vh`;
-  }
-
-  const projectTriggers = projetos.map((projeto, index) => {
-    const trigger = document.createElement("div");
-    trigger.className = "project-trigger";
-    trigger.dataset.index = index;
-    projectTriggersContainer.appendChild(trigger);
-    return trigger;
-  });
-
+  // Observer para animar seções ao entrar na tela
   const observer = new IntersectionObserver(
     (entries) => {
-      const intersectingEntries = entries.filter((e) => e.isIntersecting);
-      if (intersectingEntries.length === 0) return;
-
-      const lastVisibleEntry =
-        intersectingEntries[intersectingEntries.length - 1];
-      const target = lastVisibleEntry.target;
-      let activeSectionId = "";
-
-      if (target.matches(".project-trigger")) {
-        activeSectionId = "projects-main-section";
-        const projectIndex = parseInt(target.dataset.index, 10);
-        updateProjectContent(
-          projectIndex,
-          projectDetailsContainer,
-          projectActiveImage
+      entries.forEach((entry) => {
+        const navLink = document.querySelector(
+          `#main-nav a[href="#${entry.target.id}"]`
         );
-      } else {
-        activeSectionId = target.id;
-      }
-
-      Object.values(mainSections).forEach((section) => {
-        section.classList.toggle("active", section.id === activeSectionId);
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.toggle(
-          "nav-active",
-          link.getAttribute("href") === `#${activeSectionId}`
-        );
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          if (navLink) {
+            navLinks.forEach((link) => link.classList.remove("nav-active"));
+            navLink.classList.add("nav-active");
+          }
+        } else {
+          entry.target.classList.remove("active");
+        }
       });
     },
-    { threshold: 0.5 }
+    { threshold: 0.6 }
   );
 
-  function startExperience(isMenuClick = false, targetSection = null) {
-    if (body.classList.contains("is-interactive")) return;
+  allScrollPages.forEach((section) => observer.observe(section));
 
-    body.classList.add("is-interactive");
-
-    const firstSectionToShow = targetSection || mainSections.intro;
-
-    firstSectionToShow.classList.add("active");
-    updateActiveNavLink(firstSectionToShow.id);
-  }
-
-  window.addEventListener("wheel", () => startExperience(), { once: true });
-  window.addEventListener("touchstart", () => startExperience(), {
-    once: true,
-  });
-  window.addEventListener("keydown", () => startExperience(), { once: true });
-
-  function updateActiveNavLink(activeId) {
-    navLinks.forEach((link) => {
-      link.classList.toggle(
-        "nav-active",
-        link.getAttribute("href") === `#${activeId}`
-      );
-    });
-  }
-
-  Object.values(mainSections).forEach((section) => observer.observe(section));
-  projectTriggers.forEach((trigger) => observer.observe(trigger));
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
-      startExperience(true, targetSection);
-
+      const targetSection = document.querySelector(this.getAttribute("href"));
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: "smooth" });
       }
     });
   });
+
+  nextProjectBtn.addEventListener("click", () => {
+    currentProjectIndex++;
+    if (currentProjectIndex >= projetos.length) {
+      currentProjectIndex = 0;
+    }
+    updateProjectContent();
+  });
+
+  prevProjectBtn.addEventListener("click", () => {
+    currentProjectIndex--;
+    if (currentProjectIndex < 0) {
+      currentProjectIndex = projetos.length - 1;
+    }
+    updateProjectContent();
+  });
+
+  document.getElementById("intro-section").classList.add("active");
+  updateProjectContent();
 });

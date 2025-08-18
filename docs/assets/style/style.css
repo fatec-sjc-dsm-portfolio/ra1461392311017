@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 
+/* 1. Reset e Configurações Globais */
 body,
 html {
   margin: 0;
@@ -18,6 +19,7 @@ html {
   scrollbar-width: none;
 }
 
+/* 2. Background e Navegação */
 .background-overlay {
   position: fixed;
   top: 0;
@@ -25,9 +27,42 @@ html {
   width: 100vw;
   height: 100vh;
   z-index: -2;
-  background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 50%, #6d28d9 100%);
+  background: radial-gradient(circle at center, #000000 80%, #231b2c 100%);
+}
+#main-nav {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  z-index: 1000;
+}
+#main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+#main-nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+#main-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #6d28d9;
+}
+#main-nav a.nav-active {
+  background-color: #fff;
+  color: #6d28d9;
 }
 
+/* 3. Estrutura de Rolagem */
 .scroll-container {
   height: 100vh;
   overflow-y: scroll;
@@ -35,6 +70,7 @@ html {
   scroll-behavior: smooth;
 }
 .scroll-page {
+  position: relative; /* Para posicionar elementos filhos */
   width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
@@ -45,29 +81,55 @@ html {
   box-sizing: border-box;
 }
 
-#projects-main-section {
-  position: relative;
-  display: block;
-  padding: 0;
-  height: auto;
+/* 4. Animação de Entrada (Coração da Lógica) */
+.content-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.scroll-page.active .content-wrapper {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.sticky-content-wrapper {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+/* Animação escalonada para as habilidades */
+.skills-box .capacidades .grid_items {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.scroll-page.active .skills-box .capacidades .grid_items {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-page.active .skills-box .capacidades .grid_items:nth-child(1) {
+  transition-delay: 0.2s;
+}
+.scroll-page.active .skills-box .capacidades .grid_items:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.scroll-page.active .skills-box .capacidades .grid_items:nth-child(3) {
+  transition-delay: 0.4s;
+}
+.scroll-page.active .skills-box .capacidades .grid_items:nth-child(4) {
+  transition-delay: 0.5s;
+}
+.scroll-page.active .skills-box .capacidades .grid_items:nth-child(5) {
+  transition-delay: 0.6s;
 }
 
-.project-trigger {
-  height: 100vh;
+/* Animação para troca de projetos */
+#project-details-container,
+.project-active-image {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+#project-details-container.changing,
+.project-active-image.changing {
+  opacity: 0;
+  transform: scale(0.98);
 }
 
+/* 5. Estilos Gerais e Específicos */
 .content-wrapper {
   display: flex;
   flex-direction: column;
@@ -79,7 +141,7 @@ html {
 }
 .text-column,
 .image-column {
-  flex: 1;
+  flex: 1.2;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -101,62 +163,7 @@ html {
   }
 }
 
-/* 5. Animações de Conteúdo */
-
-.content-wrapper > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.scroll-page.active .content-wrapper > * {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.2s;
-}
-.scroll-page.active .capacidades .grid_items {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-#intro-section .content-wrapper > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.scroll-page.active .capacidades .grid_items:nth-child(1) {
-  animation-delay: 0.3s;
-}
-.scroll-page.active .capacidades .grid_items:nth-child(2) {
-  animation-delay: 0.4s;
-}
-.scroll-page.active .capacidades .grid_items:nth-child(3) {
-  animation-delay: 0.5s;
-}
-.scroll-page.active .capacidades .grid_items:nth-child(4) {
-  animation-delay: 0.6s;
-}
-.scroll-page.active .capacidades .grid_items:nth-child(5) {
-  animation-delay: 0.7s;
-}
-
-#project-details-container,
-.project-active-image {
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-}
-#project-details-container.changing,
-.project-active-image.changing {
-  opacity: 0;
-  transform: scale(0.95);
-}
-
-/* 6 e 7. Estilos Específicos e Tipografia */
+/* Estilos de Seções */
 #intro-section .nome1 {
   font-size: 3em;
   color: #fff;
@@ -171,11 +178,6 @@ html {
   margin-top: 20px;
   justify-content: center;
 }
-@media (min-width: 768px) {
-  #iconesocial {
-    justify-content: flex-start;
-  }
-}
 #iconesocial i {
   font-size: 2rem;
   color: #fff;
@@ -186,16 +188,26 @@ html {
   transform: scale(1.1);
 }
 .profile-img {
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
+  width: 15vw;
+  height: 50vh;
+  object-fit: contain;
   object-fit: cover;
-  border: 5px solid #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
+
+.titulo-detalhe {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #333;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
 #project-details-container,
-.skills-main-page .text-column,
-.contact-main-page .text-column {
+.about-me-box,
+.skills-box {
   width: 100%;
   max-width: 550px;
   background-color: rgba(255, 255, 255, 0.95);
@@ -205,11 +217,22 @@ html {
   box-sizing: border-box;
   color: #333;
 }
+.about-me-box {
+  max-width: 700px;
+  padding: 40px;
+}
+.about-me-text {
+  font-size: 1.2em;
+  line-height: 1.7;
+  color: #555;
+}
 .project-active-image {
-  max-width: 400px;
   width: 100%;
+  max-width: 550px;
+  height: 30vh;
+  object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.658);
 }
 .capacidades {
   display: grid;
@@ -229,20 +252,11 @@ html {
   border-radius: 10px;
   background-color: #f8f9fa;
   border: 1px solid #eee;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-.grid_items:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 .grid_items i {
   font-size: 2.5rem;
   margin-bottom: 10px;
   color: #333;
-  transition: color 0.3s ease;
-}
-.grid_items:hover i {
-  color: #6d28d9;
 }
 .grid_items p {
   font-size: 1rem;
@@ -250,69 +264,10 @@ html {
   margin: 0;
   color: #555;
 }
-.contato {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-.contact-details-email {
-  width: 100%;
-  max-width: 350px;
-  background: #fff;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.contact-details-email:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-.contact-details-email img {
-  width: 50px;
-  height: auto;
-  margin: 0 auto 15px auto;
-  display: block;
-}
-.contact-details-email a {
-  display: block;
-  text-decoration: none;
-  color: #6d28d9;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.contact-details-email p {
-  color: #555;
-  font-size: 0.9em;
-  margin: 0;
-}
-.sobrenome {
-  color: #000;
-}
-.contribuicao-text-desc {
-  color: #6d28d9;
-  font-weight: bold;
-}
-.small-participation {
-  font-size: small;
-  color: #555;
-}
-.small-participation .star-icon {
-  color: gold;
-  margin-right: 2px;
-}
-.nome1 {
-  text-transform: uppercase;
-  font-family: "Montserrat";
-}
+
 .titulo {
   font-family: "Montserrat";
-  color: #000000;
+  color: #6d28d9;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -343,66 +298,41 @@ html {
   border-radius: 5px;
   text-decoration: none;
   margin-top: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease;
   font-weight: bold;
 }
-.project-link:hover {
-  background-color: #5b21b6;
-  transform: translateY(-2px);
-}
 
-/* 8. Menu de Navegação */
-#main-nav {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  z-index: 1000;
-}
-
-#main-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Navegação dos Projetos */
+#project-nav {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  border-radius: 30px;
 }
-
-#main-nav a {
-  text-decoration: none;
+#project-nav button {
+  background: none;
+  border: 2px solid #fff;
   color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+#project-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.651);
+}
+#project-nav button:active {
+  transform: scale(0.9);
+}
+#project-counter {
+  font-size: 1.2rem;
   font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  padding: 8px 16px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-#main-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #6d28d9;
-}
-
-#main-nav a.nav-active {
-  background-color: #fff;
-  color: #6d28d9;
-}
-
-/* 9. Estilos da Seção Sobre Mim */
-#about-me-section .text-column {
-  width: 100%;
-  max-width: 700px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  box-sizing: border-box;
-  color: #333;
-}
-
-.about-me-text {
-  font-size: 1.2em;
-  line-height: 1.7;
-  color: #555;
 }

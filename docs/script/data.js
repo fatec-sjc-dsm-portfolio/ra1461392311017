@@ -1,15 +1,15 @@
 export const projetos = [
-  {
-    id: "projeto1",
-    titulo: "AutoKeychain",
-    descricao:
-      "Projeto de TCC realizado durante o curso de Automação Industrial.",
-    tecnologias: ["Arduino", "C++", "Automação"],
-    contribuicao:
-      "No projeto AutoKeychain, trabalhei na integração de sensores, tanto programação quanto prototipação, com o Arduino MEGA para automatizar e garantir a segurança no maseio das chaves de um claviculário.",
-    dificuldade:
-      "No ano de 2020, durante meu primeiro ano do ensino médio, as aulas foram paralisadas devido à pandemia da COVID-19. Por conta disso, as aulas da minha escola passaram a ser ministradas de forma online, via Microsoft Teams. O retorno das aulas se deu em 2022; por isso, houve muita dificuldade com o processo manual do TCC: montagem, soldagem, testes, etc. Contudo, com muito esforço, eu e meu grupo conseguimos dar a volta por cima e apresentar um bom trabalho.",
-  },
+  // {
+  //   id: "projeto1",
+  //   titulo: "AutoKeychain",
+  //   descricao:
+  //     "Projeto de TCC realizado durante o curso de Automação Industrial.",
+  //   tecnologias: ["Arduino", "C++", "Automação"],
+  //   contribuicao:
+  //     "No projeto AutoKeychain, trabalhei na integração de sensores, tanto programação quanto prototipação, com o Arduino MEGA para automatizar e garantir a segurança no maseio das chaves de um claviculário.",
+  //   dificuldade:
+  //     "No ano de 2020, durante meu primeiro ano do ensino médio, as aulas foram paralisadas devido à pandemia da COVID-19. Por conta disso, as aulas da minha escola passaram a ser ministradas de forma online, via Microsoft Teams. O retorno das aulas se deu em 2022; por isso, houve muita dificuldade com o processo manual do TCC: montagem, soldagem, testes, etc. Contudo, com muito esforço, eu e meu grupo conseguimos dar a volta por cima e apresentar um bom trabalho.",
+  // },
   {
     id: "projeto2",
     titulo: "Data-SARS",
@@ -120,49 +120,10 @@ export const projetos = [
     dificuldade:
       "Este projeto foi meu quarto API. As maiores dificuldades do projeto foram adaptar o código de forma a ganhar dinamismo pela parte de DevOPS. Trabalhar em duas frentes se mostrou desafiador, somado a isso, o grupo passou por algumas dificuldades e demissão de dois membros. Mas, com esforço, lutamos muito para nos adaptar, re-aprender e conciliar o tempo para trabalhar tanto em Dev como em OPS. Conseguimos entregar mais um projeto satisfatório e à altura do que nos foi pedido.",
   },
-  {
-    id: "projeto8",
-    titulo: "Neurahive",
-    descricao:
-      "Projeto de sistema para monitoramento e controle de estações metereológicas.",
-    tecnologias: [
-      "React native",
-      "Expo",
-      "Postgresql",
-      "Typescript",
-      "FastAPI",
-      "Python",
-      "Docker",
-    ],
-    contribuicao:
-      "Este foi o projeto integrador do quarto semestre da Fatec, participei como dev, contribuindo quase inteiramente com a integração do front-end com o backend, comunicação de APIS externas, perfomance de código e atuando com a parte de CI de DevOPS.",
-    dificuldade:
-      "Este projeto foi meu quarto API. As maiores dificuldades do projeto foram adaptar o código de forma a ganhar dinamismo pela parte de DevOPS. Trabalhar em duas frentes se mostrou desafiador, somado a isso, o grupo passou por algumas dificuldades e demissão de dois membros. Mas, com esforço, lutamos muito para nos adaptar, re-aprender e conciliar o tempo para trabalhar tanto em Dev como em OPS. Conseguimos entregar mais um projeto satisfatório e à altura do que nos foi pedido.",
-  },
-  {
-    id: "projeto9",
-    titulo: "Food-Tracker",
-    descricao:
-      "Projeto de sistema para monitoramento e controle de estações metereológicas.",
-    tecnologias: [
-      "C++",
-      "Arduino",
-      "Postgresql",
-      "Flutter",
-      "Dart",
-      "FastAPI",
-      "Python",
-      "Docker",
-    ],
-    contribuicao:
-      "Este foi o projeto integrador do quarto semestre da Fatec, participei como dev, contribuindo quase inteiramente com a integração do front-end com o backend, comunicação de APIS externas, perfomance de código e atuando com a parte de CI de DevOPS.",
-    dificuldade:
-      "Este projeto foi meu quarto API. As maiores dificuldades do projeto foram adaptar o código de forma a ganhar dinamismo pela parte de DevOPS. Trabalhar em duas frentes se mostrou desafiador, somado a isso, o grupo passou por algumas dificuldades e demissão de dois membros. Mas, com esforço, lutamos muito para nos adaptar, re-aprender e conciliar o tempo para trabalhar tanto em Dev como em OPS. Conseguimos entregar mais um projeto satisfatório e à altura do que nos foi pedido.",
-  },
 ];
 
 export const imagensProjetos = [
-  "assets/images/AutoKeychain_logo.png",
+  // "assets/images/AutoKeychain_logo.png",
   "assets/images/logoDataSars.png",
   "assets/images/callgenielogogit.png",
   "assets/images/PetLovers.png",
@@ -176,13 +137,11 @@ export const imagensProjetos = [
 ];
 
 export const linksProjetos = [
-  "https://www.youtube.com/watch?v=JSKRIMW8OH4&list=LL&index=127",
+  // "https://www.youtube.com/watch?v=JSKRIMW8OH4&list=LL&index=127",
   "https://github.com/Grupo-Syntax-Squad/API",
   "https://github.com/Grupo-Syntax-Squad/CallGenie",
   "https://github.com/b4hia/PetLovers-PL",
   "https://github.com/b4hia/Atlantis",
   "https://github.com/Grupo-Syntax-Squad/AssetBox",
   "https://github.com/Grupo-Syntax-Squad/Tupan",
-  "https://github.com/seu-usuario/Neurahive",
-  "https://github.com/seu-usuario/Food-Tracker",
 ];

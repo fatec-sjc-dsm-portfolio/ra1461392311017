@@ -15,10 +15,10 @@
 
     <nav id="main-nav">
       <ul>
-        <li><a href="#intro-section">Início</a></li>
+        <li><a href="#intro-section" class="nav-active">Início</a></li>
         <li><a href="#about-me-section">Sobre Mim</a></li>
         <li><a href="#projects-main-section">Projetos</a></li>
-        <!-- <li><a href="#skills-main-section">Habilidades</a></li> -->
+        <li><a href="#skills-main-section">Habilidades</a></li>
       </ul>
     </nav>
 
@@ -43,26 +43,24 @@
               ></a>
             </div>
           </div>
-          <div class="image-column">
-            <img
-              src="assets/images/profile.png"
-              alt="Foto de Perfil"
-              class="profile-img"
-            />
-          </div>
+          <img
+            src="assets/images/gabriel.png"
+            alt="Foto de Perfil"
+            class="profile-img"
+          />
         </div>
       </section>
 
       <section id="about-me-section" class="scroll-page">
         <div class="content-wrapper">
-          <div class="text-column">
-            <h2 class="titulo current-section-title">Sobre Mim</h2>
+          <div class="text-column about-me-box">
+            <h2 class="titulo">Sobre Mim</h2>
             <p class="about-me-text">
-              Olá! Sou Gabriel Reis, um apaixonado desenvolvedor Full-Stack com
-              foco em criar soluções eficientes e elegantes. Com experiência em
-              tecnologias como React, Node.js e Python, busco constantemente
-              aprender e aplicar as melhores práticas para construir aplicações
-              robustas e escaláveis.
+              Olá! Me chamo Gabriel Reis, sou um jovem apaixonado em desenvolver
+              aplicações com foco em criar soluções eficientes e elegantes. Com
+              experiência em tecnologias como React, Node.js e Python, busco
+              constantemente aprender e aplicar as melhores práticas para
+              construir aplicações robustas e escaláveis.
               <br /><br />
               Minha jornada na programação é movida pela curiosidade e pelo
               desafio de transformar ideias complexas em produtos funcionais e
@@ -73,7 +71,8 @@
       </section>
 
       <section id="projects-main-section" class="scroll-page">
-        <div class="sticky-content-wrapper">
+        <div class="project-container">
+          <h2 class="titulo">Projetos</h2>
           <div class="content-wrapper">
             <div class="text-column project-header">
               <div id="project-details-container"></div>
@@ -86,14 +85,22 @@
               />
             </div>
           </div>
+          <div id="project-nav">
+            <button id="prev-project-btn">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="project-counter">1 / 9</span>
+            <button id="next-project-btn">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
-        <div class="project-triggers-container"></div>
       </section>
 
-      <!-- <section id="skills-main-section" class="scroll-page">
+      <section id="skills-main-section" class="scroll-page">
         <div class="content-wrapper">
-          <div class="text-column">
-            <h2 class="titulo current-section-title">Minhas Habilidades</h2>
+          <div class="text-column skills-box">
+            <h2 class="titulo">Minhas Habilidades</h2>
             <ul class="capacidades">
               <li class="grid_items">
                 <i class="fab fa-react fa-2x"></i>
@@ -115,11 +122,28 @@
                 <i class="fab fa-python fa-2x"></i>
                 <p>Python</p>
               </li>
+
+              <li class="grid_items">
+                <i class="fab fa-git-alt fa-2x"></i>
+                <p>Git</p>
+              </li>
+              <li class="grid_items">
+                <i class="fas fa-code fa-2x"></i>
+                <p>TypeScript</p>
+              </li>
+              <li class="grid_items">
+                <i class="fas fa-database fa-2x"></i>
+                <p>PostgreSQL</p>
+              </li>
+              <li class="grid_items">
+                <i class="fas fa-leaf fa-2x"></i>
+                <p>MongoDB</p>
+              </li>
             </ul>
           </div>
         </div>
       </section>
-    </main> -->
+    </main>
 
     <script type="module" src="script/data.js"></script>
     <script type="module" src="script/scroll_logic.js"></script>
