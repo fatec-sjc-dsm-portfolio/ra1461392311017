@@ -207,7 +207,9 @@ html {
 
 #project-details-container,
 .about-me-box,
-.skills-box {
+.skills-box,
+.fundamentos-box,
+.comportamentais-box {
   width: 100%;
   max-width: 550px;
   background-color: rgba(255, 255, 255, 0.95);
@@ -217,7 +219,9 @@ html {
   box-sizing: border-box;
   color: #333;
 }
-.about-me-box {
+.about-me-box,
+.fundamentos-box,
+.comportamentais-box {
   max-width: 700px;
   padding: 40px;
 }
@@ -302,6 +306,13 @@ html {
   font-weight: bold;
 }
 
+.project-info {
+  font-size: 0.95em;
+  color: #666;
+  margin: 8px 0;
+  font-style: italic;
+}
+
 /* Navegação dos Projetos */
 #project-nav {
   position: absolute;
@@ -335,4 +346,224 @@ html {
 #project-counter {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+/* Estilos para categorias de projetos */
+.project-categories {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.category-btn {
+  padding: 10px 20px;
+  border: 2px solid #6d28d9;
+  background-color: transparent;
+  color: #6d28d9;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background-color: #6d28d9;
+  color: white;
+}
+
+/* Estilos para fundamentos técnicos */
+.fundamento-categoria {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #6d28d9;
+}
+
+.fundamento-titulo {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #6d28d9;
+  margin-bottom: 10px;
+}
+
+.fundamento-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fundamento-item {
+  padding: 5px 0;
+  color: #555;
+  position: relative;
+  padding-left: 20px;
+}
+
+.fundamento-item:before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #6d28d9;
+  font-weight: bold;
+}
+
+/* Estilos para habilidades comportamentais */
+.habilidade-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.habilidade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.habilidade-nome {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #6d28d9;
+  margin: 0;
+}
+
+.habilidade-nivel {
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.habilidade-nivel.avancado {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.habilidade-nivel.intermediario {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.habilidade-descricao {
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Animações para as novas seções */
+.fundamento-categoria,
+.habilidade-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-page.active .fundamento-categoria,
+.scroll-page.active .habilidade-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-page.active .fundamento-categoria:nth-child(1) {
+  transition-delay: 0.2s;
+}
+.scroll-page.active .fundamento-categoria:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.scroll-page.active .fundamento-categoria:nth-child(3) {
+  transition-delay: 0.4s;
+}
+.scroll-page.active .fundamento-categoria:nth-child(4) {
+  transition-delay: 0.5s;
+}
+
+.scroll-page.active .habilidade-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.scroll-page.active .habilidade-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.scroll-page.active .habilidade-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.scroll-page.active .habilidade-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.scroll-page.active .habilidade-item:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.scroll-page.active .habilidade-item:nth-child(6) {
+  transition-delay: 0.6s;
+}
+.scroll-page.active .habilidade-item:nth-child(7) {
+  transition-delay: 0.7s;
+}
+.scroll-page.active .habilidade-item:nth-child(8) {
+  transition-delay: 0.8s;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+  #main-nav ul {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #main-nav a {
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+
+  .project-categories {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .category-btn {
+    width: 200px;
+  }
+
+  .fundamentos-box,
+  .comportamentais-box {
+    padding: 25px;
+  }
+
+  .fundamento-categoria {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .habilidade-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .habilidade-nivel {
+    align-self: flex-end;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .fundamentos-box,
+  .comportamentais-box,
+  #project-details-container {
+    padding: 20px;
+  }
+
+  .titulo {
+    font-size: 1.5em;
+  }
+
+  .project-title {
+    font-size: 1.6em;
+  }
 }

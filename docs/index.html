@@ -18,7 +18,9 @@
         <li><a href="#intro-section" class="nav-active">Início</a></li>
         <li><a href="#about-me-section">Sobre Mim</a></li>
         <li><a href="#projects-main-section">Projetos</a></li>
-        <li><a href="#skills-main-section">Habilidades</a></li>
+        <li><a href="#skills-main-section">Tecnologias</a></li>
+        <li><a href="#fundamentos-section">Fundamentos</a></li>
+        <li><a href="#comportamentais-section">Soft Skills</a></li>
       </ul>
     </nav>
 
@@ -73,6 +75,14 @@
       <section id="projects-main-section" class="scroll-page">
         <div class="project-container">
           <h2 class="titulo">Projetos</h2>
+          <div class="project-categories">
+            <button id="api-projects-btn" class="category-btn active">
+              Projetos API
+            </button>
+            <button id="academic-projects-btn" class="category-btn">
+              Projetos Acadêmicos
+            </button>
+          </div>
           <div class="content-wrapper">
             <div class="text-column project-header">
               <div id="project-details-container"></div>
@@ -89,7 +99,7 @@
             <button id="prev-project-btn">
               <i class="fas fa-chevron-left"></i>
             </button>
-            <span id="project-counter">1 / 9</span>
+            <span id="project-counter">1 / 6</span>
             <button id="next-project-btn">
               <i class="fas fa-chevron-right"></i>
             </button>
@@ -100,7 +110,7 @@
       <section id="skills-main-section" class="scroll-page">
         <div class="content-wrapper">
           <div class="text-column skills-box">
-            <h2 class="titulo">Minhas Habilidades</h2>
+            <h2 class="titulo">Tecnologias</h2>
             <ul class="capacidades">
               <li class="grid_items">
                 <i class="fab fa-react fa-2x"></i>
@@ -122,7 +132,6 @@
                 <i class="fab fa-python fa-2x"></i>
                 <p>Python</p>
               </li>
-
               <li class="grid_items">
                 <i class="fab fa-git-alt fa-2x"></i>
                 <p>Git</p>
@@ -140,6 +149,24 @@
                 <p>MongoDB</p>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="fundamentos-section" class="scroll-page">
+        <div class="content-wrapper">
+          <div class="text-column fundamentos-box">
+            <h2 class="titulo">Conhecimentos Técnicos de Fundamentos</h2>
+            <div id="fundamentos-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="comportamentais-section" class="scroll-page">
+        <div class="content-wrapper">
+          <div class="text-column comportamentais-box">
+            <h2 class="titulo">Habilidades Comportamentais</h2>
+            <div id="comportamentais-container"></div>
           </div>
         </div>
       </section>
