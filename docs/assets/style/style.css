@@ -1,192 +1,174 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
-@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+/* 1. Variáveis para facilitar manutenção */
+:root {
+  --primary-color: #6d28d9;
+  --secondary-color: #a78bfa;
+  --text-light: #fff;
+  --text-dark: #333;
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --nav-bg: rgba(0, 0, 0, 0.4);
+}
 
-/* 1. Reset e Configurações Globais */
-body,
-html {
+/* Reset Global */
+* {
+  box-sizing: border-box; /* Garante que padding não estoure o layout */
+}
+
+body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #fff;
-}
-.scroll-container::-webkit-scrollbar {
-  display: none;
-}
-.scroll-container {
-  scrollbar-width: none;
+  overflow: hidden; /* Impede scroll duplo */
+  font-family: 'Muli', sans-serif;
+  color: var(--text-light);
 }
 
-/* 2. Background e Navegação */
+/* 2. Background */
 .background-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0; width: 100%; height: 100%;
   z-index: -2;
-  background: radial-gradient(circle at center, #000000 80%, #231b2c 100%);
+  background: radial-gradient(circle at center, #0f0c13 0%, #231b2c 100%);
 }
+
+/* 3. Navegação Responsiva */
 #main-nav {
   position: fixed;
   top: 20px;
-  right: 30px;
+  right: 0;
+  left: 0;
   z-index: 1000;
-}
-#main-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  gap: 15px;
-}
-#main-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  padding: 8px 16px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-#main-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #6d28d9;
-}
-#main-nav a.nav-active {
-  background-color: #fff;
-  color: #6d28d9;
+  justify-content: center; /* Centraliza no mobile */
+  pointer-events: none; /* Permite clicar através da área vazia */
 }
 
-/* 3. Estrutura de Rolagem */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 20px;
+  display: flex;
+  gap: 10px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-radius: 30px;
+  pointer-events: auto; /* Reativa cliques */
+  
+  /* Ajuste para mobile: scroll horizontal se não couber */
+  max-width: 90%;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; /* Firefox */
+}
+.nav-list::-webkit-scrollbar { display: none; } /* Chrome */
+
+#main-nav a {
+  text-decoration: none;
+  color: #ddd;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+#main-nav a:hover, #main-nav a.nav-active {
+  background-color: var(--text-light);
+  color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* 4. Estrutura de Rolagem */
 .scroll-container {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
+
 .scroll-page {
-  position: relative; /* Para posicionar elementos filhos */
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  width: 100%;
+  /* Usar min-height e dvh previne cortes em mobile e permite conteúdo maior que a tela */
+  min-height: 100dvh; 
   scroll-snap-align: start;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 80px 20px 40px; /* Topo maior por causa da nav */
 }
 
-/* 4. Animação de Entrada (Coração da Lógica) */
+/* 5. Wrappers e Layout */
 .content-wrapper {
+  display: flex;
+  flex-direction: column; /* Mobile first: coluna */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  gap: 30px;
+  
+  /* Animação */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
+
 .scroll-page.active .content-wrapper {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Animação escalonada para as habilidades */
-.skills-box .capacidades .grid_items {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-.scroll-page.active .skills-box .capacidades .grid_items {
-  opacity: 1;
-  transform: translateY(0);
-}
-.scroll-page.active .skills-box .capacidades .grid_items:nth-child(1) {
-  transition-delay: 0.2s;
-}
-.scroll-page.active .skills-box .capacidades .grid_items:nth-child(2) {
-  transition-delay: 0.3s;
-}
-.scroll-page.active .skills-box .capacidades .grid_items:nth-child(3) {
-  transition-delay: 0.4s;
-}
-.scroll-page.active .skills-box .capacidades .grid_items:nth-child(4) {
-  transition-delay: 0.5s;
-}
-.scroll-page.active .skills-box .capacidades .grid_items:nth-child(5) {
-  transition-delay: 0.6s;
-}
-
-/* Animação para troca de projetos */
-#project-details-container,
-.project-active-image {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-#project-details-container.changing,
-.project-active-image.changing {
-  opacity: 0;
-  transform: scale(0.98);
-}
-
-/* 5. Estilos Gerais e Específicos */
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
-}
-.text-column,
-.image-column {
-  flex: 1.2;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* 6. Textos Responsivos */
+.text-column {
   text-align: center;
-}
-@media (min-width: 768px) {
-  .content-wrapper {
-    flex-direction: row;
-  }
-  .text-column {
-    align-items: flex-start;
-    text-align: left;
-  }
-  .image-column {
-    align-items: center;
-  }
+  width: 100%;
 }
 
-/* Estilos de Seções */
-#intro-section .nome1 {
-  font-size: 3em;
-  color: #fff;
+/* CLAMP: O tamanho da fonte se ajusta entre 2.5rem e 4.5rem baseado na largura da tela */
+.nome1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); 
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
-#intro-section .informacoes {
-  font-size: 1.5em;
-  color: #e0e0e0;
+
+.sobrenome {
+  color: var(--secondary-color);
 }
+
+.informacoes {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* Ícones Sociais */
 #iconesocial {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   margin-top: 20px;
-  justify-content: center;
 }
-#iconesocial i {
-  font-size: 2rem;
-  color: #fff;
-  transition: color 0.3s ease, transform 0.3s ease;
+
+#iconesocial a {
+  color: var(--secondary-color);
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
-#iconesocial i:hover {
-  color: #d1baff;
-  transform: scale(1.1);
+
+#iconesocial a:hover {
+  color: var(--text-light);
+  transform: scale(1.2);
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
 }
+
+/* 7. Imagem de Perfil */
 .profile-img {
   width: 15vw;
   height: 50vh;
@@ -195,375 +177,343 @@ html {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
-.titulo-detalhe {
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #333;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
+.about-me-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-#project-details-container,
-.about-me-box,
-.skills-box,
-.fundamentos-box,
-.comportamentais-box {
-  width: 100%;
-  max-width: 550px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* 8. Cards Estilo Glassmorphism (Reutilizável) */
+.glass-effect, .about-me-box, .skills-box, .fundamentos-box, .comportamentais-box, .project-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px); /* O segredo do vidro */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
   padding: 30px;
-  box-sizing: border-box;
-  color: #333;
-}
-.about-me-box,
-.fundamentos-box,
-.comportamentais-box {
-  max-width: 700px;
-  padding: 40px;
-}
-.about-me-text {
-  font-size: 1.2em;
-  line-height: 1.7;
-  color: #555;
-}
-.project-active-image {
+  box-shadow: var(--glass-shadow);
+  color: var(--text-dark);
   width: 100%;
-  max-width: 550px;
-  height: 30vh;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.658);
+  max-width: 1000px; /* Aumentado para acomodar skills */
 }
+
+.skills-container.glass-effect {
+  max-width: 1000px;
+}
+
+/* Títulos dentro dos cards */
+.titulo {
+  font-family: "Montserrat", sans-serif;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--secondary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* 9. Seção de Skills (Grid) */
 .capacidades {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 20px;
-  list-style: none;
   padding: 0;
-  margin: 0;
+  list-style: none;
   width: 100%;
 }
+
 .grid_items {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  border: 1px solid #eee;
-}
-.grid_items i {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-.grid_items p {
-  font-size: 1rem;
-  text-align: center;
-  margin: 0;
-  color: #555;
-}
-
-.titulo {
-  font-family: "Montserrat";
-  color: #6d28d9;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.project-title {
-  font-size: 2em;
-  margin-bottom: 15px;
-}
-.project-description {
-  font-size: 1.1em;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  color: #555;
-}
-.project-techs .badge {
-  display: inline-block;
-  padding: 0.4em 0.6em;
-  margin: 0 5px 5px 0;
-  border-radius: 0.25rem;
-  background-color: #6d28d9;
-  color: white;
-  font-size: 0.9em;
-}
-.project-link {
-  display: inline-block;
-  background-color: #6d28d9;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 5px;
-  text-decoration: none;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-}
-
-.project-info {
-  font-size: 0.95em;
-  color: #666;
-  margin: 8px 0;
-  font-style: italic;
-}
-
-/* Navegação dos Projetos */
-#project-nav {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px 20px;
-  border-radius: 30px;
-}
-#project-nav button {
-  background: none;
-  border: 2px solid #fff;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.2rem;
+  padding: 20px 15px;
+  background: #f4f4f5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-#project-nav button:hover {
-  background-color: rgba(0, 0, 0, 0.651);
-}
-#project-nav button:active {
-  transform: scale(0.9);
-}
-#project-counter {
-  font-size: 1.2rem;
-  font-weight: bold;
 }
 
-/* Estilos para categorias de projetos */
+.grid_items:hover {
+  transform: translateY(-8px);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.4);
+  color: white;
+}
+
+.grid_items:hover i,
+.grid_items:hover p {
+  color: white;
+}
+.grid_items:hover {
+  transform: translateY(-5px);
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.grid_items i { color: var(--primary-color); margin-bottom: 8px; font-size: 2rem;}
+.grid_items p { margin: 0; font-size: 0.9rem; font-weight: bold; }
+
+/* 10. Seção de Projetos */
+.project-container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 60px; /* Espaço para nav */
+}
+
+.project-wrapper {
+  flex-direction: column-reverse; /* Imagem em cima no mobile, texto embaixo */
+  gap: 20px;
+}
+
+.project-active-image {
+  width: 100%;
+  height: 200px; /* Altura fixa mobile */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.project-nav {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+#project-nav button {
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+#project-nav button:active { transform: scale(0.9); }
+
+/* Botões de Categoria */
 .project-categories {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.category-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.category-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* 11. Badges de Tecnologias */
+.project-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.3);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.5);
+}
+
+/* 12. Seção Skills/Competências Unificada */
+.skills-container {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.skills-categories {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-bottom: 30px;
+  width: 100%;
 }
 
-.category-btn {
-  padding: 10px 20px;
-  border: 2px solid #6d28d9;
-  background-color: transparent;
-  color: #6d28d9;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
+.skills-wrapper {
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
 }
 
-.category-btn:hover,
-.category-btn.active {
-  background-color: #6d28d9;
-  color: white;
+.skills-content {
+  width: 100%;
 }
 
-/* Estilos para fundamentos técnicos */
+.skill-tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.skill-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilos para Fundamentos */
 .fundamento-categoria {
-  margin-bottom: 25px;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #6d28d9;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .fundamento-titulo {
-  font-size: 1.3em;
   font-weight: bold;
-  color: #6d28d9;
+  color: var(--primary-color);
   margin-bottom: 10px;
-}
-
-.fundamento-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  font-size: 1.1rem;
+  border-left: 3px solid var(--secondary-color);
+  padding-left: 10px;
 }
 
 .fundamento-item {
-  padding: 5px 0;
-  color: #555;
-  position: relative;
-  padding-left: 20px;
+  padding-left: 15px;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  list-style: none;
 }
 
 .fundamento-item:before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: #6d28d9;
+  content: "✓";
+  color: var(--secondary-color);
   font-weight: bold;
+  margin-right: 10px;
 }
 
-/* Estilos para habilidades comportamentais */
+/* Estilos para Soft Skills */
 .habilidade-item {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #f8f9fa;
+  margin-bottom: 15px;
+  padding: 12px;
+  background: rgba(109, 40, 217, 0.05);
   border-radius: 8px;
-  border: 1px solid #e9ecef;
+  border-left: 3px solid var(--secondary-color);
 }
 
-.habilidade-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
+.habilidade-titulo,
 .habilidade-nome {
-  font-size: 1.2em;
   font-weight: bold;
-  color: #6d28d9;
-  margin: 0;
-}
-
-.habilidade-nivel {
-  padding: 4px 12px;
-  border-radius: 15px;
-  font-size: 0.85em;
-  font-weight: bold;
-}
-
-.habilidade-nivel.avancado {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.habilidade-nivel.intermediario {
-  background-color: #fff3cd;
-  color: #856404;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+  margin: 0 0 8px 0;
 }
 
 .habilidade-descricao {
-  color: #555;
-  line-height: 1.5;
-  margin: 0;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
 }
 
-/* Animações para as novas seções */
-.fundamento-categoria,
+.habilidade-nivel {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* --- MEDIA QUERIES (DESKTOP) --- */
+@media (min-width: 768px) {
+  /* Layout vira linha em telas maiores */
+  .content-wrapper {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .text-column {
+    text-align: left;
+    align-items: flex-start;
+  }
+  
+  /* Imagem cresce */
+  .profile-img {
+    max-width: 450px;
+    height: 450px;
+  }
+
+  /* Layout About-me em linha */
+  .about-me-wrapper {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .about-me-img {
+    width: 350px;
+    height: 350px;
+    order: 2; /* Coloca imagem à direita */
+  }
+
+  /* Projetos lado a lado */
+  .project-wrapper {
+    flex-direction: row;
+  }
+  .project-active-image {
+    height: 300px;
+  }
+  
+  /* Navbar vai para o canto direito */
+  #main-nav {
+    justify-content: flex-end;
+    padding-right: 30px;
+  }
+}
+
+/* Animações de entrada (Mantidas do original) */
+.skills-box .grid_items, 
+.fundamento-item, 
 .habilidade-item {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition: 0.5s ease-out;
 }
-
-.scroll-page.active .fundamento-categoria,
+.scroll-page.active .grid_items,
+.scroll-page.active .fundamento-item,
 .scroll-page.active .habilidade-item {
   opacity: 1;
   transform: translateY(0);
 }
-
-.scroll-page.active .fundamento-categoria:nth-child(1) {
-  transition-delay: 0.2s;
-}
-.scroll-page.active .fundamento-categoria:nth-child(2) {
-  transition-delay: 0.3s;
-}
-.scroll-page.active .fundamento-categoria:nth-child(3) {
-  transition-delay: 0.4s;
-}
-.scroll-page.active .fundamento-categoria:nth-child(4) {
-  transition-delay: 0.5s;
-}
-
-.scroll-page.active .habilidade-item:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.scroll-page.active .habilidade-item:nth-child(2) {
-  transition-delay: 0.2s;
-}
-.scroll-page.active .habilidade-item:nth-child(3) {
-  transition-delay: 0.3s;
-}
-.scroll-page.active .habilidade-item:nth-child(4) {
-  transition-delay: 0.4s;
-}
-.scroll-page.active .habilidade-item:nth-child(5) {
-  transition-delay: 0.5s;
-}
-.scroll-page.active .habilidade-item:nth-child(6) {
-  transition-delay: 0.6s;
-}
-.scroll-page.active .habilidade-item:nth-child(7) {
-  transition-delay: 0.7s;
-}
-.scroll-page.active .habilidade-item:nth-child(8) {
-  transition-delay: 0.8s;
-}
-
-/* Responsividade para dispositivos móveis */
-@media (max-width: 768px) {
-  #main-nav ul {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  #main-nav a {
-    padding: 6px 12px;
-    font-size: 0.9em;
-  }
-
-  .project-categories {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .category-btn {
-    width: 200px;
-  }
-
-  .fundamentos-box,
-  .comportamentais-box {
-    padding: 25px;
-  }
-
-  .fundamento-categoria {
-    padding: 15px;
-    margin-bottom: 20px;
-  }
-
-  .habilidade-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .habilidade-nivel {
-    align-self: flex-end;
-  }
-}
-
-/* Ajustes para telas muito pequenas */
-@media (max-width: 480px) {
-  .fundamentos-box,
-  .comportamentais-box,
-  #project-details-container {
-    padding: 20px;
-  }
-
-  .titulo {
-    font-size: 1.5em;
-  }
-
-  .project-title {
-    font-size: 1.6em;
-  }
-}
+/* Delay em cascata simples via seletor :nth-child */
+.scroll-page.active .grid_items:nth-child(1) { transition-delay: 0.1s; }
+.scroll-page.active .grid_items:nth-child(2) { transition-delay: 0.2s; }
+.scroll-page.active .grid_items:nth-child(3) { transition-delay: 0.3s; }
+.scroll-page.active .grid_items:nth-child(4) { transition-delay: 0.4s; }
+/* ...adicione mais se quiser... */

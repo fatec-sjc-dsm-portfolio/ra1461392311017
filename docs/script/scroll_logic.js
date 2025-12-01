@@ -48,17 +48,17 @@ function getCurrentProjects() {
 
 function getCurrentImages() {
   if (currentProjectCategory === "api") {
-    return imagensProjetos.slice(0, 4); // Primeiras 4 imagens para APIs
+    return imagensProjetos.slice(0, 6); // Primeiras 4 imagens para APIs
   } else {
-    return imagensProjetos.slice(4, 6); // Últimas 2 imagens para acadêmicos
+    return imagensProjetos.slice(6, 9); // Últimas 2 imagens para acadêmicos
   }
 }
 
 function getCurrentLinks() {
   if (currentProjectCategory === "api") {
-    return linksProjetos.slice(0, 4); // Primeiros 4 links para APIs
+    return linksProjetos.slice(0, 6); // Primeiros 4 links para APIs
   } else {
-    return linksProjetos.slice(4, 6); // Últimos 2 links para acadêmicos
+    return linksProjetos.slice(6, 9); // Últimos 2 links para acadêmicos
   }
 }
 
@@ -108,6 +108,21 @@ function switchProjectCategory(category) {
   } else {
     document.getElementById("academic-projects-btn").classList.add("active");
   }
+}
+
+function switchSkillsTab(tab) {
+  document.querySelectorAll(".skill-tab-content").forEach((content) => {
+    content.classList.remove("active");
+  });
+
+  document
+    .querySelectorAll(".skills-categories .category-btn")
+    .forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+  document.getElementById(`${tab}-content`).classList.add("active");
+  document.getElementById(`${tab}-skills-btn`).classList.add("active");
 }
 
 function createFundamentosHTML() {
@@ -163,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevProjectBtn = document.getElementById("prev-project-btn");
   const nextProjectBtn = document.getElementById("next-project-btn");
 
-  // Observer para animar seções ao entrar na tela
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -196,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Event listeners para botões de categoria
   document.getElementById("api-projects-btn").addEventListener("click", () => {
     switchProjectCategory("api");
   });
@@ -206,6 +219,18 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", () => {
       switchProjectCategory("academic");
     });
+
+  document.getElementById("tech-skills-btn").addEventListener("click", () => {
+    switchSkillsTab("tech");
+  });
+
+  document.getElementById("fundamentos-btn").addEventListener("click", () => {
+    switchSkillsTab("fundamentos");
+  });
+
+  document.getElementById("soft-skills-btn").addEventListener("click", () => {
+    switchSkillsTab("soft-skills");
+  });
 
   nextProjectBtn.addEventListener("click", () => {
     const currentProjects = getCurrentProjects();
@@ -225,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateProjectContent();
   });
 
-  // Inicializar conteúdo
   document.getElementById("intro-section").classList.add("active");
   createFundamentosHTML();
   createComportamentaisHTML();

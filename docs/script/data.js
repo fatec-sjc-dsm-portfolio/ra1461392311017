@@ -91,6 +91,38 @@ export const projetosAPI = [
     dificuldade:
       "Este projeto foi meu quarto API. As maiores dificuldades do projeto foram adaptar o código de forma a ganhar dinamismo pela parte de DevOps. Trabalhar em duas frentes se mostrou desafiador, somado a isso, o grupo passou por algumas dificuldades e demissão de dois membros. Mas, com esforço, lutamos muito para nos adaptar, re-aprender e conciliar o tempo para trabalhar tanto em Dev como em Ops. Conseguimos entregar mais um projeto satisfatório e à altura do que nos foi pedido.",
   },
+  {
+    id: "api5",
+    titulo: "NeuraHive",
+    descricao:
+      "Plataforma para gerenciamento de agentes de IA especializados - API 5º Semestre",
+    categoria: "API",
+    semestre: "5º Semestre",
+    tecnologias: [
+      "Python",
+      "TypeScript",
+      "React Native",
+      "AI Agents",
+      "Microservices",
+    ],
+    contribuicao:
+      "Neste projeto integrador do quinto semestre, atuei no desenvolvimento dos serviços de backend em Python (service-neurahive) e na integração com a aplicação mobile. Fui responsável pela arquitetura de comunicação entre os agentes inteligentes e a interface do usuário.",
+    dificuldade:
+      "O principal desafio deste API foi lidar com a complexidade da orquestração de agentes de IA e garantir uma resposta fluida na aplicação móvel. A integração entre o ambiente mobile (TypeScript) e os serviços de backend exigiu um planejamento robusto de APIs e tratamento de dados assíncronos.",
+  },
+  {
+    id: "api6",
+    titulo: "Synapse",
+    descricao:
+      "Sistema integrado para gestão e conexão de dados com IA - API 6º Semestre",
+    categoria: "API",
+    semestre: "6º Semestre",
+    tecnologias: ["Python", "SCSS", "Web Development", "Backend Architecture"],
+    contribuicao:
+      "No projeto final do curso (6º semestre), contribuí ativamente no desenvolvimento do backend do sistema Synapse, focando na estruturação lógica e na eficiência do processamento de dados, além de apoiar a estilização e responsividade do frontend.",
+    dificuldade:
+      "Sendo o último projeto integrador, a complexidade técnica foi elevada. O maior obstáculo foi garantir a escalabilidade do sistema e a manutenção de um código limpo e modular (clean code) em meio a um prazo apertado de entrega, exigindo alta colaboração e sincronia da equipe Syntax Squad.",
+  },
 ];
 
 // Projetos Acadêmicos e Profissionais
@@ -126,12 +158,22 @@ export const projetosAcademicos = [
     dificuldade:
       "Este projeto foi destinado à matéria de Técnicas de Programação 2. Foi um projeto que desenvolvi de maneira autônoma. Foi um projeto tranquilo; minha maior dificuldade ainda foi conciliar o tempo para desenvolver o projeto, trabalhar no API e fazer as outras atividades das matérias. Por ser um projeto que fiz sozinho, me requeriu um alto nível de compromisso e dedicação, visto que não haveria alguém para me auxiliar no desenvolvimento.",
   },
+  {
+    id: "acad3",
+    titulo: "Food-Tracker",
+    descricao: "Aplicativo móvel para rastreamento e controle de alimentos",
+    categoria: "Acadêmico",
+    materia: "Desenvolvimento de Dispositivos Móveis II",
+    tecnologias: ["Python", "Mobile Development", "API Rest"],
+    contribuicao:
+      "Projeto acadêmico proposto pelo professor Carlos Feixas para a disciplina de Mobile II. Desenvolvi toda a estrutura em flutter do aplicativo, todas as telas e integrações, além disso auxiliei também no desenvolvimento e elaboração de todo o backend (service-food-tracker).",
+    dificuldade:
+      "A maior dificuldade foi aprender a lidar com a tecnologia de flutter e a comunicação eficiente entre o dispositivo móvel e o serviço Python, garantindo que os dados de consumo e estoque fossem atualizados em tempo real.",
+  },
 ];
 
-// Array combinado para manter compatibilidade com o código existente
 export const projetos = [...projetosAPI, ...projetosAcademicos];
 
-// Conhecimentos Técnicos de Fundamentos
 export const fundamentos = [
   {
     categoria: "Algoritmos e Estruturas de Dados",
@@ -228,8 +270,11 @@ export const imagensProjetos = [
   "assets/images/callgenielogogit.png",
   "assets/images/assetboxlogogti.png",
   "assets/images/tupan.png",
+  "assets/images/Neurahive.png",
+  "assets/images/Synapse.png",
   "assets/images/PetLovers.png",
   "assets/images/Atlantis.png",
+  "assets/images/FoodTracker.png",
 ];
 
 export const linksProjetos = [
@@ -237,6 +282,9 @@ export const linksProjetos = [
   "https://github.com/b4hia/Call-Genie",
   "https://github.com/b4hia/AssetBox",
   "https://github.com/b4hia/Tupan",
+  "https://github.com/b4hia/Neurahive",
+  "https://github.com/b4hia/Synapse",
   "https://github.com/b4hia/PetLovers-PL",
   "https://github.com/b4hia/Atlantis",
+  "https://github.com/b4hia/Food-Tracker",
 ];

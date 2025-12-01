@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfólio Gabriel Reis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Muli:wght@400;700&display=swap" rel="stylesheet">
+    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -14,14 +18,14 @@
     <div class="background-overlay"></div>
 
     <nav id="main-nav">
-      <ul>
-        <li><a href="#intro-section" class="nav-active">Início</a></li>
-        <li><a href="#about-me-section">Sobre Mim</a></li>
-        <li><a href="#projects-main-section">Projetos</a></li>
-        <li><a href="#skills-main-section">Tecnologias</a></li>
-        <li><a href="#fundamentos-section">Fundamentos</a></li>
-        <li><a href="#comportamentais-section">Soft Skills</a></li>
-      </ul>
+      <div class="nav-container">
+        <ul class="nav-list">
+          <li><a href="#intro-section" class="nav-active">Início</a></li>
+          <li><a href="#about-me-section">Sobre</a></li>
+          <li><a href="#projects-main-section">Projetos</a></li>
+          <li><a href="#skills-main-section">Competências</a></li>
+        </ul>
+      </div>
     </nav>
 
     <main class="scroll-container">
@@ -31,145 +35,100 @@
             <h1 class="nome1">Gabriel <span class="sobrenome">Reis</span></h1>
             <p class="informacoes">Desenvolvedor Full-Stack</p>
             <div id="iconesocial">
-              <a
-                href="https://www.linkedin.com/in/gabriel-reis-385554230/"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a
-                href="https://github.com/b4hia"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><i class="fab fa-github"></i
-              ></a>
+              <a href="https://www.linkedin.com/in/b4hia/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/b4hia" target="_blank"><i class="fab fa-github"></i></a>
             </div>
           </div>
-          <img
-            src="assets/images/gabriel.png"
-            alt="Foto de Perfil"
-            class="profile-img"
-          />
+          <div class="image-column">
+             <img src="assets/images/gabriel.png" alt="Foto de Perfil" class="profile-img" />
+          </div>
         </div>
       </section>
 
       <section id="about-me-section" class="scroll-page">
-        <div class="content-wrapper">
-          <div class="text-column about-me-box">
+        <div class="content-wrapper about-me-wrapper">
+          <div class="text-column about-me-box glass-effect">
             <h2 class="titulo">Sobre Mim</h2>
             <p class="about-me-text">
-              Olá! Me chamo Gabriel Reis, sou um jovem apaixonado em desenvolver
-              aplicações com foco em criar soluções eficientes e elegantes. Com
-              experiência em tecnologias como React, Node.js e Python, busco
-              constantemente aprender e aplicar as melhores práticas para
-              construir aplicações robustas e escaláveis.
-              <br /><br />
-              Minha jornada na programação é movida pela curiosidade e pelo
-              desafio de transformar ideias complexas em produtos funcionais e
-              intuitivos.
-            </p>
+              Olá! Me chamo Gabriel Reis, sou um jovem que gosta em desenvolver
+              aplicações com foco em criar soluções eficientes e elegantes. Tenho
+              experiência em desenvolvimento web full-stack, gestão de projetos
+              e engenharia de software. Meu hobby favorito é jogar videogames e ouvir musica.
+              </p> Estou sempre em busca de novos desafios que me permitam crescer 
+              profissionalmente e contribuir para o sucesso dos projetos em que estou envolvido.
+          </div>
+          <div class="image-column">
+            <img src="assets/images/about_me_profile.jpeg" alt="Foto de Perfil" class="profile-img about-me-img" />
           </div>
         </div>
       </section>
 
       <section id="projects-main-section" class="scroll-page">
-        <div class="project-container">
+        <div class="project-container glass-effect">
           <h2 class="titulo">Projetos</h2>
           <div class="project-categories">
-            <button id="api-projects-btn" class="category-btn active">
-              Projetos API
-            </button>
-            <button id="academic-projects-btn" class="category-btn">
-              Projetos Acadêmicos
-            </button>
+            <button id="api-projects-btn" class="category-btn active">API</button>
+            <button id="academic-projects-btn" class="category-btn">Acadêmicos</button>
           </div>
-          <div class="content-wrapper">
+          <div class="content-wrapper project-wrapper">
             <div class="text-column project-header">
-              <div id="project-details-container"></div>
+              <div id="project-details-container">
+                 <h3 class="project-title">Projeto Exemplo</h3>
+                 <p class="project-description">Descrição placeholder para visualização.</p>
+              </div>
             </div>
             <div class="image-column project-image-column">
-              <img
-                src=""
-                alt="Imagem do Projeto"
-                class="project-active-image"
-              />
+              <img src="https://via.placeholder.com/500x300" alt="Imagem do Projeto" class="project-active-image" />
             </div>
           </div>
           <div id="project-nav">
-            <button id="prev-project-btn">
-              <i class="fas fa-chevron-left"></i>
-            </button>
+            <button id="prev-project-btn"><i class="fas fa-chevron-left"></i></button>
             <span id="project-counter">1 / 6</span>
-            <button id="next-project-btn">
-              <i class="fas fa-chevron-right"></i>
-            </button>
+            <button id="next-project-btn"><i class="fas fa-chevron-right"></i></button>
           </div>
         </div>
       </section>
 
       <section id="skills-main-section" class="scroll-page">
-        <div class="content-wrapper">
-          <div class="text-column skills-box">
-            <h2 class="titulo">Tecnologias</h2>
-            <ul class="capacidades">
-              <li class="grid_items">
-                <i class="fab fa-react fa-2x"></i>
-                <p>React</p>
-              </li>
-              <li class="grid_items">
-                <i class="fab fa-html5 fa-2x"></i>
-                <p>HTML5</p>
-              </li>
-              <li class="grid_items">
-                <i class="fab fa-css3-alt fa-2x"></i>
-                <p>CSS3</p>
-              </li>
-              <li class="grid_items">
-                <i class="fab fa-js-square fa-2x"></i>
-                <p>JavaScript</p>
-              </li>
-              <li class="grid_items">
-                <i class="fab fa-python fa-2x"></i>
-                <p>Python</p>
-              </li>
-              <li class="grid_items">
-                <i class="fab fa-git-alt fa-2x"></i>
-                <p>Git</p>
-              </li>
-              <li class="grid_items">
-                <i class="fas fa-code fa-2x"></i>
-                <p>TypeScript</p>
-              </li>
-              <li class="grid_items">
-                <i class="fas fa-database fa-2x"></i>
-                <p>PostgreSQL</p>
-              </li>
-              <li class="grid_items">
-                <i class="fas fa-leaf fa-2x"></i>
-                <p>MongoDB</p>
-              </li>
-            </ul>
+        <div class="skills-container glass-effect">
+          <h2 class="titulo">Competências</h2>
+          <div class="skills-categories">
+            <button id="tech-skills-btn" class="category-btn active">Tecnologias</button>
+            <button id="fundamentos-btn" class="category-btn">Fundamentos</button>
+            <button id="soft-skills-btn" class="category-btn">Soft Skills</button>
+          </div>
+          <div class="content-wrapper skills-wrapper">
+            <div class="text-column skills-content">
+              <!-- Tecnologias -->
+              <div id="tech-content" class="skill-tab-content active">
+                <ul class="capacidades">
+                  <li class="grid_items"><i class="fab fa-react fa-2x"></i><p>React</p></li>
+                  <li class="grid_items"><i class="fab fa-html5 fa-2x"></i><p>HTML5</p></li>
+                  <li class="grid_items"><i class="fab fa-css3-alt fa-2x"></i><p>CSS3</p></li>
+                  <li class="grid_items"><i class="fab fa-python fa-2x"></i><p>Python</p></li>
+                  <li class="grid_items"><i class="fas fa-leaf fa-2x"></i><p>MongoDB</p></li>
+                  <li class="grid_items"><i class="fas fa-database fa-2x"></i><p>PostgreSQL</p></li>
+                  <li class="grid_items"><i class="fas fa-memory fa-2x"></i><p>Redis</p></li>
+                  <li class="grid_items"><i class="fab fa-js fa-2x"></i><p>JavaScript</p></li>
+                  <li class="grid_items"><i class="fas fa-code fa-2x" style="color: #3178c6;"></i><p>TypeScript</p></li>
+                  <li class="grid_items"><i class="fas fa-check fa-2x"></i><p>Prettier</p></li>
+                  <li class="grid_items"><i class="fab fa-git-alt fa-2x"></i><p>Git</p></li>
+                  <li class="grid_items"><i class="fab fa-linux fa-2x"></i><p>Linux</p></li>
+                </ul>
+              </div>
+              <!-- Fundamentos -->
+              <div id="fundamentos-content" class="skill-tab-content">
+                <div id="fundamentos-container"></div>
+              </div>
+              <!-- Soft Skills -->
+              <div id="soft-skills-content" class="skill-tab-content">
+                <div id="comportamentais-container"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="fundamentos-section" class="scroll-page">
-        <div class="content-wrapper">
-          <div class="text-column fundamentos-box">
-            <h2 class="titulo">Conhecimentos Técnicos de Fundamentos</h2>
-            <div id="fundamentos-container"></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="comportamentais-section" class="scroll-page">
-        <div class="content-wrapper">
-          <div class="text-column comportamentais-box">
-            <h2 class="titulo">Habilidades Comportamentais</h2>
-            <div id="comportamentais-container"></div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <script type="module" src="script/data.js"></script>
